@@ -1,4 +1,30 @@
+import { useState } from "react";
+
 const Modal = ({ setClick }) => {
+  const [city, setCity] = useState("");
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const value = city.trim();
+    console.log(value);
+  };
+
+  const handleGeoLocation = () => {
+    navigator.geolocation.getCurrentPosition(
+      (positions) => {
+        const { latitude, longitude } = positions.coords;
+
+        console.log({ latitude, longitude });
+      },
+      (error) => {
+        console.log(error);
+      },
+      {
+        timeout: 10000,
+      },
+    );
+  };
+
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm px-4">
       {/* Modal */}
@@ -29,21 +55,33 @@ const Modal = ({ setClick }) => {
 
         {/* Search */}
         <div className="mt-6">
-          <label className="input input-bordered flex items-center gap-2">
-            🔍
-            <input
-              type="text"
-              placeholder="Enter city name..."
-              className="grow"
-            />
-          </label>
+          <form onSubmit={handleSubmit}>
+            <label className="input input-bordered flex items-center gap-2">
+              🔍
+              <input
+                value={city}
+                onChange={(e) => setCity(e.target.value)}
+                type="text"
+                placeholder="Enter city name..."
+                className="grow"
+              />
+            </label>
+            {/* Search Button */}
+            <button
+              type="submit"
+              className="btn btn-primary mt-4 w-full   hover:btn-secondary hover:scale-105"
+            >
+              Search Weather
+            </button>
+          </form>
         </div>
 
-        {/* Search Button */}
-        <button className="btn btn-primary mt-4 w-full">Search Weather</button>
-
         {/* Current Location */}
-        <button className="btn btn-outline mt-3 w-full">
+        <button
+          type="button"
+          className="btn btn-outline mt-3 w-full hover:btn-secondary hover:scale-105"
+          onClick={handleGeoLocation}
+        >
           📍 Use Current Location
         </button>
 
