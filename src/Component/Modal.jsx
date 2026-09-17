@@ -1,23 +1,54 @@
 import { useState } from "react";
+import { getGeoLocation } from "../Services/getGeoLocation";
+
+import { useNavigate } from "react-router";
 
 const Modal = ({ setClick }) => {
   const [city, setCity] = useState("");
 
-  const handleSubmit = (e) => {
+  const [error, setError] = useState("");
+
+  const navigate = useNavigate();
+
+  const goToPage = (location) => {
+    navigate("/weather", { state: { location } });
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const value = city.trim();
-    console.log(value);
+
+    if (!value) {
+      setError("Please enter a city name");
+      return;
+    }
+
+    try {
+      const location = await getGeoLocation(value);
+      if (!location) {
+        setError("Geocoding request faild ");
+      }
+
+      goToPage(location);
+    } catch (error) {
+      setError(error);
+    }
   };
 
   const handleGeoLocation = () => {
+    if (!navigator.geolocation) {
+      setError("Geo locatin not found");
+      return;
+    }
+
     navigator.geolocation.getCurrentPosition(
       (positions) => {
         const { latitude, longitude } = positions.coords;
 
-        console.log({ latitude, longitude });
+        goToPage({ name: "Your location", lat: latitude, log: longitude });
       },
       (error) => {
-        console.log(error);
+        setError(error.message);
       },
       {
         timeout: 10000,
@@ -94,6 +125,11 @@ const Modal = ({ setClick }) => {
             <button className="btn btn-sm btn-ghost">Bogura</button>
             <button className="btn btn-sm btn-ghost">Chittagong</button>
             <button className="btn btn-sm btn-ghost">Rajshahi</button>
+          </div>
+          <div className="text-center">
+            {error && (
+              <p className="text-lg font-medium text-red-500"> {error}</p>
+            )}
           </div>
         </div>
 

@@ -1,6 +1,7 @@
 import { createBrowserRouter } from "react-router";
 import RootLayouts from "../layouts/RootLayouts";
 import Home from "../Pages/Home";
+import WeatherDetails from "../Component/WeatherDetails";
 
 export const router = createBrowserRouter([
   {
@@ -10,6 +11,10 @@ export const router = createBrowserRouter([
       {
         index: true,
         Component: Home,
+      },
+      {
+        path: "/weather",
+        Component: WeatherDetails,
       },
     ],
   },

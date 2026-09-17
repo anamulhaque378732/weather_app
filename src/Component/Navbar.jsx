@@ -1,4 +1,18 @@
+import { NavLink } from "react-router";
+
 const Navbar = () => {
+  const links = (
+    <>
+      <li>
+        <NavLink to="/" className="font-medium">
+          Home
+        </NavLink>
+      </li>
+      <li>
+        <NavLink className="font-medium">Forecast</NavLink>
+      </li>
+    </>
+  );
   return (
     <div className="navbar bg-base-100 shadow-md px-4 md:px-8">
       <div className="navbar-start">
@@ -8,17 +22,7 @@ const Navbar = () => {
       </div>
 
       <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal px-1 gap-2">
-          <li>
-            <a className="font-medium">Home</a>
-          </li>
-          <li>
-            <a className="font-medium">Forecast</a>
-          </li>
-          <li>
-            <a className="font-medium">Favorites</a>
-          </li>
-        </ul>
+        <ul className="menu menu-horizontal px-1 gap-2"> {links} </ul>
       </div>
 
       {/* Search + Mobile Menu */}
@@ -46,18 +50,7 @@ const Navbar = () => {
             tabIndex={0}
             className="menu menu-sm dropdown-content bg-base-100 rounded-box z-50 mt-3 w-52 p-2 shadow-lg"
           >
-            <li>
-              <a>Home</a>
-            </li>
-            <li>
-              <a>Forecast</a>
-            </li>
-            <li>
-              <a>Favorites</a>
-            </li>
-            <li>
-              <a>Search City</a>
-            </li>
+            {links}
           </ul>
         </div>
       </div>
