@@ -27,11 +27,12 @@ const Modal = ({ setClick }) => {
       const location = await getGeoLocation(value);
       if (!location) {
         setError("Geocoding request faild ");
+        return;
       }
 
       goToPage(location);
     } catch (error) {
-      setError(error);
+      setError(error.message);
     }
   };
 
@@ -40,7 +41,7 @@ const Modal = ({ setClick }) => {
       setError("Geo locatin not found");
       return;
     }
-
+    setError("");
     navigator.geolocation.getCurrentPosition(
       (positions) => {
         const { latitude, longitude } = positions.coords;

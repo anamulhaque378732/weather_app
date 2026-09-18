@@ -1,4 +1,4 @@
-import { NavLink } from "react-router";
+import { Link, NavLink } from "react-router";
 
 const Navbar = () => {
   const links = (
@@ -16,9 +16,9 @@ const Navbar = () => {
   return (
     <div className="navbar bg-base-100 shadow-md px-4 md:px-8">
       <div className="navbar-start">
-        <a className="text-2xl font-bold text-primary">
+        <Link to="/" className="text-2xl font-bold text-primary">
           ☀️ Weather<span className="text-secondary">ly</span>
-        </a>
+        </Link>
       </div>
 
       <div className="navbar-center hidden lg:flex">
