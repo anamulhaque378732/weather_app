@@ -4,14 +4,14 @@ import Footer from "../Component/Footer";
 
 const RootLayouts = () => {
   return (
-    <div className="h-screen  overflow-hidden flex flex-col">
-      <main className=" max-w-7xl mx-auto flex-1 overflow-hidden  ">
+    <div className="min-h-screen flex flex-col">
       <Navbar />
-        <Outlet></Outlet>
+
+      <main className="flex-1 max-w-7xl w-full mx-auto">
+        <Outlet />
       </main>
-      <div>
-        <Footer/>
-      </div>
+
+      <Footer />
     </div>
   );
 };

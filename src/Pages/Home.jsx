@@ -5,7 +5,7 @@ const Home = () => {
   const [click, setClick] = useState(false);
 
   return (
-    <div className="text-center my-5   min-h-screen ">
+    <div className="text-center my-5">
       <h1 className="text-6xl text-blue-300 font-extrabold">
         Next Level <span>Weather</span>
       </h1>

@@ -1,7 +1,7 @@
 import { createBrowserRouter } from "react-router";
 import RootLayouts from "../layouts/RootLayouts";
 import Home from "../Pages/Home";
-import WeatherDetails from "../Component/WeatherDetails";
+import WeatherDetails from "../Pages/WeatherDetails";
 
 export const router = createBrowserRouter([
   {

@@ -14,7 +14,7 @@ const Navbar = () => {
     </>
   );
   return (
-    <div className="navbar bg-base-100 shadow-md px-4 md:px-8">
+    <div className="navbar bg-base-100 shadow-md ">
       <div className="navbar-start">
         <Link to="/" className="text-2xl font-bold text-primary">
           ☀️ Weather<span className="text-secondary">ly</span>
