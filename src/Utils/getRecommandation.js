@@ -1,4 +1,4 @@
-const Rain = ["drizzle", "rain", "freezing_rain", "showers", "thunderstom"];
+const Rain = ["rain", "drizzle", "freezing_rain", "showers", "thunderstorm"];
 
 export function getRecommandations(weather) {
   if (!weather) return null;
